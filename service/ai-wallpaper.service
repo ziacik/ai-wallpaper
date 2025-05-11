@@ -5,7 +5,7 @@ Wants=NetworkManager-wait-online.service
 
 [Service]
 Type=oneshot
-ExecStart=ai-wallpaper
+ExecStart=/path/to/ai-wallpaper
 Environment=OPENAI_API_KEY=???
 WorkingDirectory=???
 
