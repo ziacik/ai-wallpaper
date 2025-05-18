@@ -1,0 +1,28 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="radial" cx="0.5" cy="0.5" r="0.7">
+            <stop offset="0%" stop-color="#ffd93b" />
+            <stop offset="40%" stop-color="#79ffe1" />
+            <stop offset="100%" stop-color="#2b2777" />
+        </radialGradient>
+        <clipPath id="circleClip">
+            <circle cx="256" cy="256" r="256" />
+        </clipPath>
+    </defs>
+    <g clip-path="url(#circleClip)">
+        <rect x="0" y="0" width="512" height="512" fill="url(#radial)" />
+        <circle cx="256" cy="256" r="38" fill="#fff" opacity="0.95" />
+        <circle cx="256" cy="256" r="18" fill="#7b2ff2" opacity="0.65" />
+        <path d="M190 242 L90 180" stroke="#fd356e" stroke-width="12" opacity="0.65" />
+        <path d="M322 270 L440 188" stroke="#19e6a2" stroke-width="11" opacity="0.72" />
+        <path d="M251 218 L200 86" stroke="#ff7b00" stroke-width="10" opacity="0.55" />
+        <path d="M265 295 L315 410" stroke="#0070ff" stroke-width="9" opacity="0.6" />
+        <path d="M256 256 Q350 230 390 390" stroke="#fff" stroke-width="6" opacity="0.25" />
+        <path d="M256 256 Q150 330 130 390" stroke="#fff" stroke-width="6" opacity="0.25" />
+        <rect x="104" y="320" width="10" height="10" rx="2" fill="#ffbe46" opacity="0.92" />
+        <rect x="380" y="140" width="10" height="10" rx="2" fill="#00e3ff" opacity="0.92" />
+        <rect x="280" y="80" width="10" height="10" rx="2" fill="#fff" opacity="0.55" />
+        <rect x="420" y="300" width="10" height="10" rx="2" fill="#fff" opacity="0.60" />
+        <rect x="140" y="150" width="10" height="10" rx="2" fill="#79ffe1" opacity="0.92" />
+    </g>
+</svg>
