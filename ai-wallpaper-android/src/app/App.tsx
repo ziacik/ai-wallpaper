@@ -13,7 +13,7 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import WallpaperModule from './modules/WallpaperModule';
+import WallpaperModule, { WallpaperEvents } from './modules/WallpaperModule';
 
 export const App = () => {
 	const [wallpaperStatus, setWallpaperStatus] = useState('idle');
@@ -74,6 +74,19 @@ export const App = () => {
 		}
 	};
 
+	// Listen for wallpaper generation finished event
+	useEffect(() => {
+		if (!WallpaperEvents) return;
+		const sub = WallpaperEvents.addListener(
+			'WallpaperGenerationFinished',
+			async () => {
+				await loadWallpaperPreview();
+				setWallpaperStatus('success');
+			}
+		);
+		return () => sub.remove();
+	}, []);
+
 	const generateWallpaper = async () => {
 		// Check if API key is configured
 		if (!isApiKeyConfigured) {
@@ -86,19 +99,13 @@ export const App = () => {
 
 		setWallpaperStatus('generating');
 		try {
-			const success = await WallpaperModule.generateWallpaper();
-			if (success) {
-				// Load the new wallpaper preview
-				await loadWallpaperPreview();
-				setWallpaperStatus('success');
-			} else {
-				setWallpaperStatus('error');
-				Alert.alert('Error', 'Failed to generate wallpaper');
-			}
+			await WallpaperModule.generateWallpaper();
+			// Do not set success here, wait for event
 		} catch (error) {
 			console.error('Error generating wallpaper:', error);
 			setWallpaperStatus('error');
-			Alert.alert('Error', 'Failed to generate wallpaper: ' + error.message);
+			const message = error instanceof Error ? error.message : String(error);
+			Alert.alert('Error', 'Failed to generate wallpaper: ' + message);
 		}
 	};
 
@@ -132,10 +139,8 @@ export const App = () => {
 			}
 		} catch (error) {
 			console.error('Error toggling schedule:', error);
-			Alert.alert(
-				'Error',
-				'Failed to toggle wallpaper schedule: ' + error.message
-			);
+			const message = error instanceof Error ? error.message : String(error);
+			Alert.alert('Error', 'Failed to toggle wallpaper schedule: ' + message);
 		}
 	};
 
@@ -155,7 +160,8 @@ export const App = () => {
 			}
 		} catch (error) {
 			console.error('Error saving API key:', error);
-			Alert.alert('Error', 'Failed to save API key: ' + error.message);
+			const message = error instanceof Error ? error.message : String(error);
+			Alert.alert('Error', 'Failed to save API key: ' + message);
 		}
 	};
 

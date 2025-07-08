@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.aiwallpaperandroid.WallpaperModule
 import com.aiwallpaperandroid.config.ConfigManager
 import com.aiwallpaperandroid.openai.OpenAIClient
 import com.bumptech.glide.Glide
@@ -70,6 +71,9 @@ class WallpaperWorker(
                     
                     // Set as wallpaper
                     setWallpaper(bitmap)
+                    
+                    // Notify that the wallpaper has been generated
+                    WallpaperModule(applicationContext as android.content.Context as com.facebook.react.bridge.ReactApplicationContext).sendWallpaperGeneratedEvent()
                     
                     Log.d(TAG, "Wallpaper successfully generated and applied")
                     return Result.success()

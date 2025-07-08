@@ -6,6 +6,7 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.modules.core.DeviceEventManagerModule
 import java.io.File
 
 /**
@@ -165,5 +166,15 @@ class WallpaperModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
             Log.e(TAG, "Error checking if wallpaper exists", e)
             promise.reject("ERROR_CHECKING_WALLPAPER", e.message, e)
         }
+    }
+
+    /**
+     * Send an event to JavaScript when wallpaper generation is finished
+     */
+    fun sendWallpaperGeneratedEvent() {
+        val reactContext = reactApplicationContext
+        reactContext
+            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
+            .emit("WallpaperGenerationFinished", null)
     }
 }

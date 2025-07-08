@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
 
 // Interface defining the shape of our native module
 interface WallpaperModuleInterface {
@@ -70,5 +70,10 @@ const WallpaperModule: WallpaperModuleInterface =
 					);
 				},
 		  };
+
+export const WallpaperEvents =
+	Platform.OS === 'android' && NativeModules.WallpaperModule
+		? new NativeEventEmitter(NativeModules.WallpaperModule)
+		: undefined;
 
 export default WallpaperModule;
