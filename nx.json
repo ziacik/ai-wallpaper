@@ -10,6 +10,7 @@
 			"!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
 			"!{projectRoot}/tsconfig.spec.json",
 			"!{projectRoot}/jest.config.[jt]s",
+			"!{projectRoot}/jest.config.[cm]ts",
 			"!{projectRoot}/src/test-setup.[jt]s",
 			"!{projectRoot}/test-setup.[jt]s"
 		],
@@ -82,5 +83,6 @@
 			"dependsOn": ["^build"],
 			"inputs": ["production", "^production"]
 		}
-	}
+	},
+	"analytics": false
 }
