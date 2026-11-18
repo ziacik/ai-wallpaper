@@ -1,0 +1,35 @@
+name: Wallpaper CLI checks
+
+on:
+  pull_request:
+    paths:
+      - 'ai-wallpaper/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/wallpaper-cli.yml'
+  push:
+    branches:
+      - 'feat/modern-wallpaper-cli-20261118'
+
+jobs:
+  cli:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NX_DAEMON: 'false'
+      NX_SKIP_NX_CACHE: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx nx run ai-wallpaper:typecheck
+      - run: npx nx run ai-wallpaper:test
+      - run: npx nx run ai-wallpaper:build
+      - name: CLI smoke test (no API calls)
+        run: |
+          node ai-wallpaper/dist/main.js presets
+          node ai-wallpaper/dist/main.js --preset abstract-girl --extra 'electric coral' --dry-run
+          node ai-wallpaper/dist/main.js doctor || true
