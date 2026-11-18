@@ -27,6 +27,7 @@ The commands ai-wallpaper and wallpaper are aliases. If the new alias is unavail
     wallpaper presets
     wallpaper
     wallpaper --preset minimal-abstract
+    wallpaper --preset anime-girl
     wallpaper --preset abstract-girl --extra 'electric blue and coral, strong asymmetry'
     wallpaper --preset abstract-girl --extra 'warm neon' --extra 'tiny woman in the upper left'
     wallpaper 'an architectural abstraction inspired by folded paper'
@@ -61,7 +62,7 @@ Create ~/.config/ai-wallpaper/presets.json (or use $XDG_CONFIG_HOME/ai-wallpaper
       }
     }
 
-Custom presets supplement the nine built-ins; an equal name overrides the built-in. Validation errors identify the bad preset.
+Custom presets supplement the ten built-ins; an equal name overrides the built-in. Validation errors identify the bad preset.
 
 ## Files, history and costs
 
