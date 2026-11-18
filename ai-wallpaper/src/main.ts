@@ -277,7 +277,7 @@ async function generate(options: Options, state: State): Promise<void> {
       complexity: options.complexity, stream: options.stream
     }, async (base64, index) => {
       const file = imagePath.replace(/\.jpg$/, '.preview-' + (index + 1) + '.jpg');
-      await writeFile(file, Buffer.from(base64, 'base64'));
+      await writeFile(file, new Uint8Array(Buffer.from(base64, 'base64')));
       previewPaths.push(file);
       console.log('Preview ' + (index + 1) + ': ' + file);
     });
@@ -285,7 +285,7 @@ async function generate(options: Options, state: State): Promise<void> {
     for (const file of previewPaths) await unlink(file).catch(() => undefined);
   }
   if (!image.bytes.length) throw new Error('Image generation returned empty bytes');
-  await writeFile(imagePath, image.bytes, { flag: 'wx' });
+  await writeFile(imagePath, new Uint8Array(image.bytes), { flag: 'wx' });
   console.log('Saved: ' + imagePath);
 
   const entry: HistoryEntry = {
