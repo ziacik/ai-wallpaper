@@ -1,110 +1,111 @@
 {
-	"name": "ai-wallpaper",
-	"version": "0.0.2",
-	"description": "AI-powered wallpaper generator",
-	"type": "module",
-	"bin": {
-		"ai-wallpaper": "dist/main.js"
-	},
-	"files": [
-		"dist"
-	],
-	"dependencies": {
-		"axios": "^1.6.0",
-		"openai": "^4.87.3",
-		"wallpaper": "^7.2.1"
-	},
-	"keywords": [
-		"wallpaper",
-		"ai",
-		"openai"
-	],
-	"author": "ziacik",
-	"license": "MIT",
-	"publishConfig": {
-		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ziacik/ai-wallpaper.git"
-	},
-	"nx": {
-		"name": "ai-wallpaper",
-		"targets": {
-			"build": {
-				"executor": "@nx/esbuild:esbuild",
-				"outputs": [
-					"{options.outputPath}"
-				],
-				"defaultConfiguration": "production",
-				"options": {
-					"platform": "node",
-					"outputPath": "ai-wallpaper/dist",
-					"format": [
-						"esm"
-					],
-					"bundle": true,
-					"main": "ai-wallpaper/src/main.ts",
-					"tsConfig": "ai-wallpaper/tsconfig.app.json",
-					"assets": [
-						"ai-wallpaper/src/assets",
-						{
-							"glob": "package.json",
-							"input": "ai-wallpaper",
-							"output": "."
-						}
-					],
-					"esbuildOptions": {
-						"sourcemap": true,
-						"outExtension": {
-							".js": ".js"
-						}
-					}
-				},
-				"configurations": {
-					"development": {},
-					"production": {
-						"esbuildOptions": {
-							"sourcemap": false,
-							"outExtension": {
-								".js": ".js"
-							}
-						}
-					}
-				}
-			},
-			"serve": {
-				"executor": "@nx/js:node",
-				"defaultConfiguration": "development",
-				"dependsOn": [
-					"build"
-				],
-				"options": {
-					"buildTarget": "ai-wallpaper:build",
-					"runBuildTargetDependencies": false
-				},
-				"configurations": {
-					"development": {
-						"buildTarget": "ai-wallpaper:build:development"
-					},
-					"production": {
-						"buildTarget": "ai-wallpaper:build:production"
-					}
-				}
-			},
-			"test": {
-				"options": {
-					"passWithNoTests": true
-				}
-			},
-			"nx-release-publish": {
-				"dependsOn": [
-					"build"
-				],
-				"options": {
-					"packageRoot": "ai-wallpaper/dist"
-				}
-			}
-		}
-	}
+  "name": "ai-wallpaper",
+  "version": "0.0.2",
+  "description": "Generate original AI wallpapers with presets, live previews, GNOME support and GPT-Image-2.6",
+  "type": "module",
+  "bin": {
+    "ai-wallpaper": "dist/main.js",
+    "wallpaper": "dist/main.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "axios": "^1.6.0",
+    "openai": "^4.87.3",
+    "wallpaper": "^7.2.1"
+  },
+  "keywords": [
+    "wallpaper",
+    "ai",
+    "openai"
+  ],
+  "author": "ziacik",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziacik/ai-wallpaper.git"
+  },
+  "nx": {
+    "name": "ai-wallpaper",
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "ai-wallpaper/dist",
+          "format": [
+            "esm"
+          ],
+          "bundle": true,
+          "main": "ai-wallpaper/src/main.ts",
+          "tsConfig": "ai-wallpaper/tsconfig.app.json",
+          "assets": [
+            "ai-wallpaper/src/assets",
+            {
+              "glob": "package.json",
+              "input": "ai-wallpaper",
+              "output": "."
+            }
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "serve": {
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "ai-wallpaper:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "ai-wallpaper:build:development"
+          },
+          "production": {
+            "buildTarget": "ai-wallpaper:build:production"
+          }
+        }
+      },
+      "test": {
+        "options": {
+          "passWithNoTests": true
+        }
+      },
+      "nx-release-publish": {
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "packageRoot": "ai-wallpaper/dist"
+        }
+      }
+    }
+  }
 }
