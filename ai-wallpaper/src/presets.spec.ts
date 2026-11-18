@@ -12,15 +12,22 @@ describe('Wallpaper prompt and preset behavior', () => {
     expect(builtInPresets['anime-girl']!.prompt).toContain('MUST always wear');
     expect(builtInPresets['anime-girl']!.prompt).toContain('No cowboy hats');
     expect(builtInPresets['anime-girl']!.prompt).toContain('different cuts, fabrics, details and colors');
+    for (const name of ['abstract-girl', 'anime-girl']) {
+      const preset = builtInPresets[name]!;
+      expect(preset.description).not.toMatch(/\\b(?:woman|adult|small|tiny)\\b/i);
+      expect(preset.prompt).not.toMatch(/\\b(?:woman|adult woman|small|tiny)\\b/i);
+      expect(preset.prompt).toContain('girl');
+      expect(preset.prompt).toContain('full-body');
+    }
     expect(Object.keys(builtInPresets)).toHaveLength(10);
   });
 
   test('--extra adds directions without replacing the preset', () => {
     const original = builtInPresets['abstract-girl']!.prompt;
-    const result = buildPrompt(original, ['electric orange and turquoise', 'woman on the right']);
+    const result = buildPrompt(original, ['electric orange and turquoise', 'girl on the right']);
     expect(result).toContain(original);
     expect(result).toContain('electric orange and turquoise');
-    expect(result).toContain('woman on the right');
+    expect(result).toContain('girl on the right');
     expect(result).toContain('No text');
   });
 
