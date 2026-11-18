@@ -2,8 +2,8 @@
 import { execFile } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { access, mkdir, unlink, writeFile } from 'node:fs/promises';
-import readline from 'node:readline/promises';
-import path from 'node:path';
+import * as readline from 'node:readline/promises';
+import * as path from 'node:path';
 import { promisify } from 'node:util';
 import { setWallpaper } from 'wallpaper';
 import { buildPrompt, loadPresets, type Preset } from './presets.js';
