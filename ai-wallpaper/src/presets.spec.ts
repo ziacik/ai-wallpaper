@@ -14,8 +14,8 @@ describe('Wallpaper prompt and preset behavior', () => {
     expect(builtInPresets['anime-girl']!.prompt).toContain('different cuts, fabrics, details and colors');
     for (const name of ['abstract-girl', 'anime-girl']) {
       const preset = builtInPresets[name]!;
-      expect(preset.description).not.toMatch(/\\b(?:woman|adult|small|tiny)\\b/i);
-      expect(preset.prompt).not.toMatch(/\\b(?:woman|adult woman|small|tiny)\\b/i);
+      expect(preset.description).not.toMatch(/\b(?:woman|adult|small|tiny)\b/i);
+      expect(preset.prompt).not.toMatch(/\b(?:woman|adult woman|small|tiny)\b/i);
       expect(preset.prompt).toContain('girl');
       expect(preset.prompt).toContain('full-body');
     }
