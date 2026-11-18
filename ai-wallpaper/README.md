@@ -13,7 +13,7 @@ Generate vivid, varied desktop wallpapers with the OpenAI Images API. This is th
 
 From the repository root:
 
-    npm ci
+    npm install
     npx nx run ai-wallpaper:build
     npm link --workspace=ai-wallpaper
     export OPENAI_API_KEY='your-key'
