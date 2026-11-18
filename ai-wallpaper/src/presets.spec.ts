@@ -9,6 +9,9 @@ describe('Wallpaper prompt and preset behavior', () => {
     expect(builtInPresets['anime-girl']).toBeDefined();
     expect(builtInPresets['anime-girl']!.prompt).toContain('anime-style');
     expect(builtInPresets['anime-girl']!.prompt).toContain('full-body');
+    expect(builtInPresets['anime-girl']!.prompt).toContain('MUST always wear');
+    expect(builtInPresets['anime-girl']!.prompt).toContain('No cowboy hats');
+    expect(builtInPresets['anime-girl']!.prompt).toContain('different cuts, fabrics, details and colors');
     expect(Object.keys(builtInPresets)).toHaveLength(10);
   });
 
