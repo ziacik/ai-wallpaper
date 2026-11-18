@@ -6,7 +6,10 @@ describe('Wallpaper prompt and preset behavior', () => {
   test('ships the original abstract mode plus themed presets', () => {
     expect(builtInPresets['abstract-girl']).toBeDefined();
     expect(builtInPresets['minimal-abstract']).toBeDefined();
-    expect(Object.keys(builtInPresets)).toHaveLength(9);
+    expect(builtInPresets['anime-girl']).toBeDefined();
+    expect(builtInPresets['anime-girl']!.prompt).toContain('anime-style');
+    expect(builtInPresets['anime-girl']!.prompt).toContain('full-body');
+    expect(Object.keys(builtInPresets)).toHaveLength(10);
   });
 
   test('--extra adds directions without replacing the preset', () => {
