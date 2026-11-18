@@ -7,6 +7,7 @@ const swcJestConfig = JSON.parse(
 
 // Disable .swcrc look-up by SWC core because we're passing in swcJestConfig ourselves
 swcJestConfig.swcrc = false;
+swcJestConfig.module = { type: 'commonjs' };
 
 module.exports = {
 	displayName: 'ai-wallpaper',
@@ -16,6 +17,10 @@ module.exports = {
 		'^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
 	},
 	transformIgnorePatterns: [],
+	moduleNameMapper: { '^(\\.{1,2}/.*)\\.js ['ts', 'js', 'html'],
+	coverageDirectory: 'test-output/jest/coverage',
+};
+: '$1' },
 	moduleFileExtensions: ['ts', 'js', 'html'],
 	coverageDirectory: 'test-output/jest/coverage',
 };
